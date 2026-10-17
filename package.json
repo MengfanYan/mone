@@ -42,7 +42,7 @@
     "@supabase/supabase-js": "2.117.3",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
-    "date-fns": "4.1.0",
+    "date-fns": "4.4.0",
     "lucide-react": "0.525.0",
     "next": "16.4.0",
     "pdf-lib": "1.17.1",

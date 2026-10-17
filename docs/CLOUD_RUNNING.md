@@ -24,7 +24,7 @@ python3 -m venv .venv-cloud
 cp .env.cloud.example .env.cloud.local
 ```
 
-云端 SDK 要求 Node 22+。工作区开发依赖已提供 Node 22，`scripts/cloud.mjs` 会在系统 Node 20 下使用它，不改系统安装。本地版仍保留原启动方式。云 API 使用 FastAPI/Uvicorn、psycopg、PyJWT；领域金额和确认逻辑与本地版共用。
+本地、离线 Demo、CI 与云端容器统一使用 **Node 22+（`.nvmrc`、`package.json` 与 `Dockerfile.cloud` 均固定为 `22.23.3`）** 和 **Python 3.11+（本机已验证 `3.12.3`）**。`.npmrc` 启用 `engine-strict=true` 与 `save-exact=true`；当宿主机默认 Node 低于 22 时，`scripts/run.mjs`、`scripts/demo.mjs`、`scripts/build.mjs`、`scripts/cloud.mjs` 和 `scripts/check.mjs` 会自动切换到工作区锁定的 `node_modules/node/bin/node`（`22.23.3`），不改系统安装。云 API 依赖在 `requirements-cloud.txt` 与 `requirements-cloud.lock` 中同步固定精确版本（`fastapi==0.143.1`、`uvicorn==0.54.0`、`psycopg[binary,pool]==3.3.6`、`psycopg-pool==3.3.3`、`PyJWT[crypto]==2.15.1`、`cryptography==50.0.2`、`httpx==0.28.1`）；领域金额和确认逻辑与本地版共用。依赖选型与防冲突规范见 [依赖升级评估](DEPENDENCY_REVIEW.md)。
 
 在自己的 Supabase 控制台建立专用开发项目，配置真实项目 URL、publishable key 和数据库连接。不要将账号密码、数据库 DSN、service-role key 或签名密钥粘贴到聊天中；填写被 Git/Docker 忽略的 `.env.cloud.local` 或托管平台 Secrets。文件权限建议 `chmod 600 .env.cloud.local`。构建环境使用干净源码及运行时密钥注入；不要把含私人数据库或 `.env` 的目录上传为公开制品。
 

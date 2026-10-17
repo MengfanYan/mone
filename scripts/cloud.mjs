@@ -10,7 +10,7 @@ if (Number(process.versions.node.split(".")[0]) < 22) {
   const runtime = path.join(root, "node_modules/node/bin/node");
   if (!existsSync(runtime))
     throw new Error(
-      "Cloud mode requires Node 22+. Install dependencies or use Node 22; local mode still supports Node 20.",
+      "Financial Agent requires Node 22+ (validated 22.23.3 in .nvmrc). Run 'nvm use' or 'npm ci' first.",
     );
   const result = spawnSync(
     runtime,

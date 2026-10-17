@@ -31,6 +31,7 @@ export default function StatementPreview({ report }) {
   useEffect(() => {
     let active = true,
       document,
+      task,
       url;
     preparePdfRuntime()
       .then(async (runtime) => {
@@ -43,12 +44,13 @@ export default function StatementPreview({ report }) {
         url = URL.createObjectURL(
           new Blob([bytes], { type: "application/pdf" }),
         );
-        document = await runtime.renderer.getDocument({
+        task = runtime.renderer.getDocument({
           data: bytes.slice(),
           worker: runtime.worker,
-        }).promise;
+        });
+        document = await task.promise;
         if (!active) {
-          await document.destroy();
+          await task.destroy();
           URL.revokeObjectURL(url);
           return;
         }
@@ -62,7 +64,7 @@ export default function StatementPreview({ report }) {
       });
     return () => {
       active = false;
-      document?.destroy();
+      task?.destroy();
       if (url) URL.revokeObjectURL(url);
     };
   }, [report, locale, t, key]);

@@ -51,8 +51,7 @@ export async function readLocalDocument(file) {
         );
       return text;
     } finally {
-      if (document) await document.destroy();
-      else await task.destroy();
+      await task.destroy();
     }
   }
   if (!/\.(txt|md)$/i.test(file.name))

@@ -27,7 +27,7 @@ npm ci
 npm run dev
 ```
 
-打开终端显示的地址（默认 `http://localhost:3000`），输入每次启动生成的 **Local access code**。界面默认英文，可用 **EN / 中文** 切换并记住偏好；先在 **Privacy & consent / 隐私与授权** 开启本地分析并确认，再添加账户或体验合成案例。无需Clerk、云模型密钥、Docker或GPU。Node 20.9+、Python 3.11+；中英图片OCR另需本地Tesseract，项目附带语言数据；文字规则解析不依赖它。
+打开终端显示的地址（默认 `http://localhost:3000`），输入每次启动生成的 **Local access code**。界面默认英文，可用 **EN / 中文** 切换并记住偏好；先在 **Privacy & consent / 隐私与授权** 开启本地分析并确认，再添加账户或体验合成案例。无需Clerk、云模型密钥、Docker或GPU。Node 22+（`.nvmrc`：22.23.3）、Python 3.11+；中英图片OCR另需本地Tesseract，项目附带语言数据；文字规则解析不依赖它。
 
 完整使用步骤、CSV格式、配置、数据路径和检查命令见 **[运行与使用指南](docs/RUNNING.md)**；实际端点见 **[本地API契约](docs/API.md)**；范围、验收及未开放功能见 **[实施状态](docs/IMPLEMENTATION.md)**。`npm run build && npm start` 启动优化后的本地版本。
 

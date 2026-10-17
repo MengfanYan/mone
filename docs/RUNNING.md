@@ -2,10 +2,10 @@
 
 2026-10-16: the eight modules now share the supplied dark SaaS design, with home notifications and an unread bell. Alerts use confirmed records and saved prices; no real-time bank or market feed is implied. Restart the existing development service and refresh the browser to load the new Python endpoints. See [UI and notifications](UI_NOTIFICATIONS.md).
 
-This is a working **local, single-operator MVP** of the three design documents. No cloud account, bank password, model key, or GPU is required. Node 20.9+ and Python 3.11+ are required. Chinese/English image OCR additionally needs a local `tesseract` executable; text receipts work without it.
+This is a working **local, single-operator MVP** of the three design documents. No cloud account, bank password, model key, or GPU is required. Node 22+ and Python 3.11+ are required. `.nvmrc` pins the validated Node 22.23.3 runtime (matching `Dockerfile.cloud` and CI), and `.npmrc` enforces `engine-strict=true` and `save-exact=true`; with nvm installed, run `nvm install && nvm use` before `npm ci`. Launcher scripts (`run.mjs`, `demo.mjs`, `build.mjs`, `cloud.mjs`, `check.mjs`) also automatically delegate to the workspace-pinned `node_modules/node/bin/node` (22.23.3) if invoked under an older shell Node. Chinese/English image OCR additionally needs a local `tesseract` executable; text receipts work without it.
 
 
-The cloud staging build has a separate Node 22+/Supabase/PostgreSQL setup: [CLOUD_RUNNING](CLOUD_RUNNING.md). Run `npm run cloud` after configuration; it uses port3002 and `.next-cloud`. Billing stays off. Local commands below retain their existing single-operator behavior.
+The cloud staging build shares the same Node 22.23.3 baseline and adds a Supabase/PostgreSQL setup: [CLOUD_RUNNING](CLOUD_RUNNING.md). Run `npm run cloud` after configuration; it uses port 3002 and `.next-cloud`. Billing stays off. Local commands below retain their existing single-operator behavior. For locked package versions and conflict-prevention rules across collaborators and cloud builds, see [Dependency review](DEPENDENCY_REVIEW.md).
 
 ```bash
 npm ci

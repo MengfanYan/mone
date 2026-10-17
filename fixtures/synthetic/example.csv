@@ -1,0 +1,4 @@
+date,amount,currency,merchant,category,kind,external_id
+2026-09-03,12000.00,CNY,Synthetic salary,工资,income,example-income
+2026-09-05,7000.00,CNY,Synthetic living,生活,expense,example-living
+2026-09-06,500.00,CNY,Synthetic interest,利息,interest,example-interest

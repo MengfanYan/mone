@@ -1,0 +1,818 @@
+/* A clear visual hierarchy: permanent navigation, focal amounts, then detail. */
+:root {
+  --ink: #182b27;
+  --muted: #53675e;
+  --line: #d6e0d9;
+  --green: #1c5842;
+  --canvas: #eef2ed;
+  --background: #eef2ed;
+  --lime: #c6ec70;
+}
+.app-shell {
+  --module-accent: #206247;
+  --module-tint: #e8f2e9;
+}
+.app-shell[data-section="ledger"] {
+  --module-accent: #176a73;
+  --module-tint: #e6f3f3;
+}
+.app-shell[data-section="planning"] {
+  --module-accent: #8a5b13;
+  --module-tint: #faf0d9;
+}
+.app-shell[data-section="portfolio"] {
+  --module-accent: #345e9a;
+  --module-tint: #eaf0fa;
+}
+.app-shell[data-section="reports"] {
+  --module-accent: #345e9a;
+  --module-tint: #eaf0fa;
+}
+.app-shell[data-section="assistant"] {
+  --module-accent: #6a4692;
+  --module-tint: #f1ebf8;
+}
+.app-shell[data-section="privacy"] {
+  --module-accent: #176a73;
+  --module-tint: #e6f3f3;
+}
+.app-shell .sidebar {
+  width: 238px;
+  background: #15382f;
+  border: 0;
+  color: #fff;
+}
+.sidebar .brand {
+  color: #fff;
+}
+.sidebar .brand span {
+  color: #becfc3;
+  font-size: 10px;
+}
+.sidebar .brand-mark {
+  background: #c6ec70;
+  color: #15382f;
+}
+.sidebar .sidebar-caption {
+  color: #c0d0c6;
+  font-size: 11px;
+}
+.sidebar .nav-item {
+  color: #d5e2d9;
+  font-size: 13px;
+  min-height: 46px;
+}
+.sidebar .nav-item:hover {
+  background: #244c40;
+  color: #fff;
+}
+.sidebar .nav-item.active {
+  background: #c6ec70;
+  color: #15382f;
+  font-weight: 700;
+  box-shadow: 0 4px 16px #082a2326;
+}
+.sidebar .nav-item.active svg {
+  color: #15382f;
+}
+.sidebar .nav-item b {
+  background: #375c4c;
+  color: #fff;
+  border-radius: 6px;
+  min-width: 23px;
+  height: 22px;
+  padding: 3px;
+}
+.sidebar .nav-item.active b {
+  background: #15382f;
+  color: #fff;
+}
+.sidebar .local-card {
+  color: #edf5ec;
+  background: #20473b;
+  border-color: #3c6050;
+}
+.sidebar .local-card p {
+  color: #c3d6c7;
+  font-size: 12px;
+}
+.sidebar .status-dot {
+  background: #c6ec70;
+}
+.app-shell .main-wrap {
+  margin-left: 238px;
+}
+.app-shell .topbar {
+  border-bottom: 1px solid #d6e0d9;
+}
+.app-shell .breadcrumb,
+.app-shell .private-badge {
+  color: #53675e;
+}
+.app-shell .workspace {
+  padding-top: 32px;
+}
+.app-shell .page-heading {
+  align-items: center;
+  padding-bottom: 22px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid #ccd8cf;
+}
+.app-shell .page-heading > div:first-child {
+  padding-left: 17px;
+  border-left: 5px solid var(--module-accent);
+}
+.app-shell .page-heading .eyebrow {
+  color: var(--module-accent);
+  font-size: 10px;
+  letter-spacing: 1.7px;
+  font-weight: 750;
+}
+.app-shell .page-heading h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+.app-shell .page-heading p {
+  color: #53675e;
+  font-size: 13px;
+  max-width: 530px;
+}
+.app-shell .panel {
+  border-color: #d4dfd7;
+  box-shadow: 0 3px 10px #19362b05;
+}
+.app-shell .panel-heading h2 {
+  font-size: 17px;
+  letter-spacing: -0.4px;
+  font-weight: 700;
+}
+.app-shell .panel-heading > svg {
+  color: var(--module-accent);
+}
+.app-shell .section-caption,
+.app-shell .panel-foot {
+  color: #52665b;
+  font-size: 12px;
+}
+.app-shell .primary,
+.app-shell .secondary,
+.app-shell .danger {
+  min-height: 42px;
+  font-size: 13px;
+  font-weight: 650;
+}
+.app-shell .secondary {
+  border-color: #bfcfc2;
+  color: #284537;
+}
+.app-shell .text-button {
+  color: #1c5842;
+  font-size: 12px;
+  font-weight: 650;
+}
+.app-shell input,
+.app-shell textarea,
+.app-shell select {
+  border-color: #bbccbf;
+  color: #182b27;
+}
+.app-shell .field > span,
+.app-shell label {
+  color: #425c4d;
+}
+.app-shell .segmented {
+  background: #eaf0e8;
+  border: 1px solid #cad6cc;
+  padding: 5px;
+}
+.app-shell .segmented button {
+  color: #46604d;
+  font-size: 12px;
+}
+.app-shell .segmented button.selected {
+  background: #183e34;
+  color: #fff;
+  box-shadow: 0 2px 4px #102f2726;
+}
+.app-shell table th {
+  background: #f1f5ee;
+  color: #42604e;
+  font-size: 11px;
+  font-weight: 700;
+}
+.app-shell table td {
+  font-size: 12px;
+  border-color: #e1e8df;
+}
+.app-shell tbody tr:hover {
+  background: #f6f9f1;
+}
+.app-shell .merchant-cell small,
+.app-shell .account-row p {
+  color: #53675e;
+  font-size: 12px;
+}
+.app-shell .chip {
+  font-weight: 650;
+  color: #354d3c;
+  background: #edf3e8;
+}
+.app-shell .green-chip {
+  color: #185d3a;
+  background: #e4f3e4;
+}
+.app-shell .amber-chip {
+  color: #825209;
+  background: #fcf0cc;
+}
+.app-shell .account-icon {
+  color: var(--module-accent);
+  background: var(--module-tint);
+  border: 1px solid #d0ddd3;
+}
+.app-shell .amount-minor {
+  color: #53675e;
+}
+.app-shell .overview-metrics {
+  gap: 18px;
+  margin-bottom: 27px;
+}
+.app-shell .overview-metrics .metric {
+  border-color: #d4dfd7;
+  min-height: 252px;
+}
+.app-shell .overview-metrics .metric-value {
+  font-weight: 600;
+}
+.app-shell .metric-top {
+  font-weight: 650;
+  font-size: 13px;
+}
+.app-shell .metric-subtitle,
+.app-shell .metric-value small {
+  color: #506450;
+  font-size: 11px;
+}
+.app-shell .overview-metrics .metric p {
+  color: #53675e;
+  font-size: 11px;
+}
+.app-shell .balance-metric {
+  background: #183e34;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.app-shell .balance-metric:before {
+  content: "";
+  position: absolute;
+  width: 145px;
+  height: 145px;
+  border: 22px solid #2b5446;
+  border-radius: 50%;
+  right: -68px;
+  top: -65px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+.app-shell .balance-metric > * {
+  position: relative;
+}
+.app-shell .overview-metrics .balance-metric p {
+  color: #c9decf;
+}
+.app-shell .daily-summary span,
+.app-shell .daily-summary p {
+  color: #52644d;
+  font-size: 11px;
+}
+.app-shell .balance-metric .metric-top,
+.app-shell .balance-metric .metric-top svg {
+  color: #e2f1de;
+}
+.app-shell .balance-metric .metric-subtitle,
+.app-shell .balance-metric .metric-value small,
+.app-shell .balance-metric p {
+  color: #c9decf;
+}
+.app-shell .balance-metric .amount-minor {
+  color: #c6ec70;
+}
+.app-shell .balance-metric .metric-foot-row {
+  color: #d5e9d1;
+  background: #295243;
+}
+.app-shell .balance-metric .metric-foot-row svg,
+.app-shell .balance-metric .money,
+.app-shell .balance-metric .money .amount-minor {
+  color: #c6ec70;
+}
+.app-shell .income-metric {
+  border-top: 4px solid #2e8b63;
+  background: #fff;
+}
+.app-shell .income-glyph i[data-filled="true"] {
+  background: #397654;
+}
+.app-shell .income-glyph > div:nth-child(2n) i[data-filled="true"] {
+  background: #a1cd59;
+}
+.app-shell .income-glyph > div:nth-child(3n) i[data-filled="true"] {
+  background: #469c7d;
+}
+.app-shell .expense-metric {
+  background: #e6efc9;
+  border-top: 4px solid #9bb53f;
+}
+.app-shell .expense-progress i {
+  background: #d0ddb0;
+}
+.app-shell .expense-progress i[data-filled="true"] {
+  background: #6a8f38;
+}
+.app-shell .expense-ratio,
+.app-shell .expense-ratio strong {
+  color: #344f22;
+  font-size: 11px;
+}
+.app-shell .expense-metric .metric-top svg {
+  color: #557331;
+}
+.app-shell .flow-panel {
+  border-top: 4px solid #2c7654;
+}
+.app-shell .budget-overview {
+  border-top: 4px solid #b19340;
+}
+.app-shell .budget-tile.tile-0 {
+  background: #b7dcbf;
+  color: #163c2b;
+}
+.app-shell .budget-tile.tile-1 {
+  background: #dcdf9d;
+  color: #354319;
+}
+.app-shell .budget-tile.tile-2 {
+  background: #244f40;
+  color: #fff;
+}
+.app-shell .budget-tile small {
+  color: inherit;
+  opacity: 1;
+  font-size: 10px;
+}
+.app-shell .budget-total {
+  color: #243f2d;
+}
+.app-shell .chart-legend,
+.app-shell .axis-label {
+  color: #425b4c;
+}
+.app-shell .expense-bar {
+  fill: #799e2f;
+}
+.app-shell .chart-legend span:nth-child(2) i {
+  background: #799e2f;
+}
+.app-shell .flow-chart g[role="button"]:hover .expense-bar,
+.app-shell .flow-chart g[role="button"]:focus .expense-bar {
+  fill: #587a1f;
+}
+.app-shell .recent-panel .panel-heading {
+  padding-bottom: 17px;
+  border-bottom: 1px solid #d6e0d9;
+}
+.app-shell .checklist-panel {
+  background: #f4f6e6;
+  border-color: #d6ddba;
+}
+.app-shell .insight p,
+.app-shell .daily-summary small {
+  color: #53644e;
+  font-size: 12px;
+}
+.app-shell .demo-banner {
+  background: #e1edcc;
+  border-color: #a4bf85;
+  padding: 14px 19px;
+}
+.app-shell .demo-mode-tag {
+  background: #284d37;
+  color: #fff;
+  font-size: 10px;
+}
+.app-shell .demo-banner p {
+  color: #435a32;
+}
+.app-shell .report-intro {
+  background: #e4edf9;
+  border-color: #b3c6df;
+  border-left: 5px solid #345e9a;
+}
+.app-shell .report-intro h2 {
+  color: #203e68;
+  font-size: 21px;
+}
+.app-shell .report-intro p {
+  color: #425e7c;
+  font-size: 13px;
+}
+.app-shell .assistant-intro {
+  background: #efe8f5;
+  border-color: #d2bedf;
+  border-left: 5px solid #6a4692;
+}
+.app-shell .assistant-intro h2 {
+  color: #422959;
+  font-size: 27px;
+}
+.app-shell .assistant-intro p {
+  color: #624a75;
+  font-size: 13px;
+}
+.app-shell .assistant-symbol {
+  color: #fff;
+  background: #67418b;
+}
+.app-shell .ask-form {
+  border-color: #b6a1c9;
+  background: #fff;
+}
+.app-shell .answer-metrics > div {
+  border-color: #d4c7e0;
+  background: #f5f0fa;
+}
+.app-shell .privacy-limits {
+  background: #e7f1f0;
+  border-color: #bad5d2;
+}
+.app-shell .toggle.on {
+  background: #216b53;
+}
+.app-shell .notice {
+  color: #315023;
+  background: #edf5df;
+  border-color: #bed79f;
+}
+.app-shell .notice.error {
+  color: #903824;
+  background: #fff0e9;
+  border-color: #e7b4a2;
+}
+.app-shell .draft-card {
+  border-color: #bdcfc1;
+  border-left: 4px solid #2d7a78;
+}
+.app-shell .draft-card h3 {
+  font-size: 16px;
+}
+.app-shell .mock-banner {
+  color: #735017;
+  border-color: #decb99;
+}
+.app-shell .panel-foot {
+  border-color: #d6e0d9;
+}
+.app-shell .workspace-footer {
+  color: #53675e;
+}
+.app-shell button:focus-visible,
+.app-shell a:focus-visible {
+  outline: 3px solid #4c86ab;
+  outline-offset: 3px;
+}
+.sidebar button:focus-visible,
+.sidebar a:focus-visible {
+  outline-color: #e3fa9b;
+}
+
+/* PDF.js draws the actual exported PDF, with a selectable text layer. */
+.statement-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
+}
+.statement-layout.statement-empty {
+  grid-template-columns: 1fr;
+}
+.app-shell .statement-library {
+  padding: 18px;
+}
+.statement-library .panel-heading {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.statement-library .account-row {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 9px;
+  padding: 16px 8px;
+  margin-inline: -8px;
+  border-radius: 8px;
+}
+.statement-library .account-row strong {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.statement-library .account-row p {
+  font-size: 11px;
+  margin-top: 5px;
+}
+.statement-library .account-icon {
+  width: 30px;
+  height: 35px;
+  border-radius: 7px;
+}
+.statement-library .account-row .secondary {
+  grid-column: 2;
+  min-height: 34px;
+  justify-self: start;
+  padding: 6px 15px;
+}
+.app-shell .statement-selected {
+  background: #e8effa;
+  box-shadow: inset 3px 0 #345e9a;
+}
+.statement-selected .secondary {
+  background: #345e9a;
+  color: #fff;
+  border-color: #345e9a;
+}
+.app-shell .pdf-panel {
+  padding: 0;
+  overflow: hidden;
+  border-color: #b8c8d3;
+}
+.pdf-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 23px;
+  background: #fff;
+}
+.pdf-heading h2 {
+  font-size: 18px;
+}
+.pdf-heading .chip {
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.pdf-heading p {
+  margin-top: 5px;
+  color: #53675e;
+  font-size: 12px;
+}
+.pdf-heading > a {
+  margin-left: auto;
+}
+.pdf-document-icon {
+  background: #e7eef8;
+  color: #345e9a;
+  padding: 13px;
+  border-radius: 12px;
+  display: flex;
+}
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.45;
+}
+.pdf-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 23px;
+  gap: 15px;
+  border-block: 1px solid #c6d3dd;
+  background: #f2f6fa;
+}
+.pdf-pagination {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  color: #3d5466;
+}
+.pdf-toolbar select {
+  padding: 7px 9px;
+  background: #fff;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.app-shell .pdf-viewport {
+  position: relative;
+  max-height: 930px;
+  min-height: 270px;
+  padding: 25px 16px;
+  background: #dce4e8;
+  overflow: auto;
+  white-space: normal;
+  line-height: normal;
+  border-radius: 0;
+}
+.pdf-page {
+  position: relative;
+  width: max-content;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 7px 25px #263c5029;
+}
+.pdf-page canvas {
+  display: block;
+}
+.pdf-page-pending {
+  visibility: hidden;
+  height: 220px;
+}
+.pdf-loading {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #36515f;
+  z-index: 1;
+  background: #eaf0f4ed;
+  padding: 15px;
+  font-size: 13px;
+}
+.pdf-text-layer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  text-align: initial;
+  line-height: 1;
+  transform-origin: 0 0;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+}
+.pdf-text-layer :is(span, br) {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.pdf-text-layer span.markedContent {
+  top: 0;
+  height: 0;
+}
+.pdf-text-layer ::selection {
+  background: #50a0df66;
+}
+.pdf-text-layer br::selection {
+  background: transparent;
+}
+
+@media (max-width: 1100px) {
+  .statement-layout {
+    grid-template-columns: 1fr;
+  }
+  .statement-library {
+    order: 2;
+  }
+  .statement-library .panel-heading {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .statement-library .account-row {
+    grid-template-columns: 35px minmax(0, 1fr) auto;
+  }
+  .statement-library .account-row .secondary {
+    grid-column: 3;
+  }
+  .app-shell .sidebar {
+    width: 208px;
+    padding-inline: 12px;
+  }
+  .app-shell .main-wrap {
+    margin-left: 208px;
+  }
+  .sidebar .nav-item {
+    font-size: 12px;
+    padding-inline: 10px;
+  }
+  .app-shell .page-heading h1 {
+    font-size: 28px;
+  }
+}
+@media (max-width: 640px) {
+  .app-shell .sidebar {
+    width: 100%;
+    padding: 15px 16px 13px;
+  }
+  .app-shell .main-wrap {
+    margin-left: 0;
+  }
+  .sidebar .brand {
+    font-size: 22px;
+  }
+  .sidebar nav {
+    gap: 6px;
+  }
+  .sidebar .nav-item {
+    min-height: 40px;
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+  .sidebar .nav-item svg {
+    width: 16px;
+  }
+  .app-shell .workspace {
+    padding-top: 24px;
+  }
+  .app-shell .page-heading {
+    padding-bottom: 20px;
+    gap: 18px;
+  }
+  .app-shell .page-heading > div:first-child {
+    padding-left: 12px;
+  }
+  .app-shell .page-heading h1 {
+    font-size: 28px;
+  }
+  .app-shell .page-heading p {
+    font-size: 12px;
+  }
+  .app-shell .overview-metrics {
+    gap: 12px;
+  }
+  .app-shell .overview-metrics .metric {
+    min-height: 263px;
+  }
+  .app-shell .overview-metrics .balance-metric {
+    min-height: 208px;
+  }
+  .app-shell .metric-top,
+  .app-shell .metric-subtitle {
+    font-size: 11px;
+  }
+  .app-shell .expense-ratio {
+    flex-wrap: wrap;
+  }
+  .app-shell .metric-value small {
+    font-size: 11px;
+  }
+  .app-shell .panel-heading h2 {
+    font-size: 16px;
+  }
+  .app-shell .panel-foot {
+    font-size: 11px;
+  }
+  .app-shell .report-intro {
+    align-items: flex-start;
+  }
+  .app-shell .report-intro h2 {
+    font-size: 20px;
+  }
+  .app-shell .report-intro p {
+    font-size: 12px;
+  }
+  .pdf-heading {
+    padding: 18px 16px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pdf-heading h2 {
+    font-size: 16px;
+  }
+  .pdf-heading > a {
+    width: 100%;
+    margin-left: 0;
+  }
+  .pdf-document-icon {
+    padding: 10px;
+  }
+  .pdf-toolbar {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pdf-pagination {
+    gap: 5px;
+    font-size: 11px;
+  }
+  .pdf-toolbar select {
+    padding: 6px;
+    font-size: 11px;
+  }
+  .app-shell .pdf-viewport {
+    padding: 16px;
+    max-height: 800px;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .app-shell .workspace > .panel,
+  .app-shell .overview-metrics {
+    animation: module-appear 0.25s ease-out;
+  }
+  @keyframes module-appear {
+    from {
+      transform: translateY(6px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}

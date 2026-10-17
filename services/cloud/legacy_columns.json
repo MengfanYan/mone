@@ -1,0 +1,145 @@
+{
+  "meta": [
+    "key",
+    "value"
+  ],
+  "accounts": [
+    "id",
+    "name",
+    "type",
+    "currency",
+    "opened_on",
+    "mock"
+  ],
+  "drafts": [
+    "id",
+    "content",
+    "evidence",
+    "version",
+    "status",
+    "source_key",
+    "created_at"
+  ],
+  "events": [
+    "id",
+    "content",
+    "source_key",
+    "reverses",
+    "created_at"
+  ],
+  "postings": [
+    "id",
+    "event_id",
+    "account_ref",
+    "currency",
+    "signed_amount"
+  ],
+  "challenges": [
+    "nonce",
+    "purpose",
+    "resource_id",
+    "content_hash",
+    "version",
+    "settings_version",
+    "session_id",
+    "expires_at",
+    "consumed"
+  ],
+  "idempotency": [
+    "key",
+    "operation",
+    "request_hash",
+    "response",
+    "created_at"
+  ],
+  "settings": [
+    "key",
+    "content"
+  ],
+  "statements": [
+    "id",
+    "period",
+    "version",
+    "snapshot",
+    "artifact",
+    "created_at"
+  ],
+  "holdings": [
+    "id",
+    "content"
+  ],
+  "evidence": [
+    "id",
+    "content"
+  ],
+  "outbox": [
+    "id",
+    "type",
+    "resource_id",
+    "version",
+    "delivered",
+    "created_at"
+  ],
+  "audit": [
+    "id",
+    "action",
+    "resource_id",
+    "at",
+    "previous_hash",
+    "hash"
+  ],
+  "command_plans": [
+    "id",
+    "session_ref",
+    "content",
+    "version",
+    "status",
+    "expires_at",
+    "created_at"
+  ],
+  "import_batches": [
+    "id",
+    "command_id",
+    "content",
+    "created_at"
+  ],
+  "account_overrides": [
+    "id",
+    "name",
+    "archived",
+    "version"
+  ],
+  "investments": [
+    "id",
+    "content",
+    "version",
+    "legacy_id",
+    "archived"
+  ],
+  "investment_valuations": [
+    "id",
+    "investment_id",
+    "observed_at",
+    "content",
+    "version",
+    "supersedes",
+    "created_at"
+  ],
+  "investment_performance_events": [
+    "id",
+    "investment_id",
+    "observed_at",
+    "content",
+    "source_key",
+    "created_at"
+  ],
+  "reported_performance_observations": [
+    "id",
+    "investment_id",
+    "observed_at",
+    "content",
+    "version",
+    "supersedes",
+    "created_at"
+  ]
+}

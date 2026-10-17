@@ -1,0 +1,16 @@
+node_modules
+.next*
+.venv*
+.env*
+.local-data
+.cloud-test-data
+.git
+reports
+test-results
+tests
+outputs
+__pycache__
+**/__pycache__
+*.sqlite3
+*.sqlite3-*
+*.pem

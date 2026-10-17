@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      BILLING_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
+        with:
+          python-version: "3.11"
+      - run: node scripts/repository-check.mjs
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run test:demo
+      - run: npm run test:pdf
+      - run: npm run build
+      - run: npm run demo:build
+      - run: npm run cloud:build
+      - run: npx playwright install --with-deps chromium
+      - run: mkdir -p reports
+      - run: npm run test:e2e:demo
+      # Cloud supplier integration and Live OCR acceptance have separate local
+      # procedures. This job does not deploy or require production secrets.

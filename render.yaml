@@ -1,0 +1,33 @@
+# Free STAGING reference, not a paid production availability promise.
+# Set environment values in Render; never commit filled secrets.
+services:
+  - type: web
+    name: zhizhang-cloud-staging
+    runtime: docker
+    dockerfilePath: ./Dockerfile.cloud
+    plan: free
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: CLOUD_DATABASE_URL
+        sync: false
+      - key: CLOUD_PUBLIC_ORIGIN
+        sync: false
+      - key: CLOUD_AUTH_FLOW_SECRET
+        generateValue: true
+      - key: CLOUD_PUBLIC_SIGNUP
+        value: "false"
+      - key: CLOUD_JOURNAL_SUPABASE_URL
+        sync: false
+      - key: CLOUD_JOURNAL_SERVICE_KEY
+        sync: false
+      - key: CLOUD_DELETION_KEYS_JSON
+        sync: false
+      - key: CLOUD_DELETION_ACTIVE_KEY
+        value: v1
+      - key: BILLING_ENABLED
+        value: "false"

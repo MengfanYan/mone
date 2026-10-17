@@ -1,0 +1,13 @@
+{
+  "id": "wallet-e0-eval-1",
+  "synthetic": true,
+  "license": "project-generated-synthetic",
+  "purpose": "evaluation-only",
+  "training_allowed": false,
+  "tasks": 200,
+  "sha256": "edfae8a97d64f83f02f36753fd8f7aec125bb95614a2dd0c66b74f11f058285f",
+  "splits": {
+    "frozen_regression": 200
+  },
+  "limitations": "Limited templates; no claims of independent model quality or OCR accuracy."
+}

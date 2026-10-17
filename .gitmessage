@@ -1,0 +1,8 @@
+# <type>(<scope>): <imperative summary, preferably <=72 characters>
+# Types: feat, fix, refactor, perf, test, docs, build, ci, chore, revert
+# One independently reviewable change. Explain the problem and resulting behavior.
+
+# Validation: exact commands actually run and their results; note unrun checks.
+# Risk / migration: relevant compatibility, storage or deployment implications.
+# Refs: #issue-number (only when the issue exists)
+# BREAKING CHANGE: describe incompatible changes and migration, when applicable.

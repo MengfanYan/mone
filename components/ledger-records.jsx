@@ -228,13 +228,13 @@ export default function LedgerRecords({
                 {text("Select", "选择")}
               </label>
               <strong>
-                {event.kind === "opening" ? kinds.opening : event.merchant}
+                {event.kind === "opening" ? kinds.opening : t(event.merchant)}
               </strong>
               <p>
-                {event.date} · {kinds[event.kind]} · {event.category}
+                {event.date} · {kinds[event.kind]} · {t(event.category)}
               </p>
               <small>
-                {accounts[event.account_id]?.name}
+                {t(accounts[event.account_id]?.name || "")}
                 {event.mock && " · MOCK"} · {status(event)}
               </small>
               {actions(event)}
@@ -295,7 +295,9 @@ export default function LedgerRecords({
                 </td>
                 <td>
                   <strong>
-                    {event.kind === "opening" ? kinds.opening : event.merchant}
+                    {event.kind === "opening"
+                      ? kinds.opening
+                      : t(event.merchant)}
                   </strong>
                   <small>
                     {event.date}
@@ -305,10 +307,12 @@ export default function LedgerRecords({
                 <td>
                   {kinds[event.kind]}
                   <small>
-                    {event.kind === "opening" ? kinds.opening : event.category}
+                    {event.kind === "opening"
+                      ? kinds.opening
+                      : t(event.category)}
                   </small>
                 </td>
-                <td>{accounts[event.account_id]?.name}</td>
+                <td>{t(accounts[event.account_id]?.name || "")}</td>
                 <td>
                   <Money value={event.amount} currency={event.currency} />
                 </td>

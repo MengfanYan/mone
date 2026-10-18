@@ -23,10 +23,46 @@ def stable_items(plan):
 
 class ExperienceStore(InvestmentStore):
     def migrate_experience(self):
+        mapping = {
+            "演示 · 银行": "Demo · Bank",
+            "演示·银行": "Demo · Bank",
+            "演示 · 贷款": "Demo · Loan",
+            "演示·贷款": "Demo · Loan",
+            "合成工资": "Synthetic salary",
+            "合成生活支出": "Synthetic living costs",
+            "合成债务利息": "Synthetic loan interest",
+            "合成本金还款": "Synthetic principal repayment",
+            "期初余额": "Opening balance",
+            "工资": "Salary",
+            "生活": "Living",
+            "利息": "Interest",
+            "本金": "Principal",
+        }
         with self.transaction() as db:
             self.migrate_investments(db)
             plan=stable_items(self.settings(db,"planning"))
             db.execute("UPDATE settings SET content=? WHERE key='planning'",(canonical(plan),))
+            db.execute("DROP TRIGGER IF EXISTS immutable_event")
+            db.execute("DROP TRIGGER IF EXISTS immutable_posting")
+            try:
+                for k, v in mapping.items():
+                    db.execute("UPDATE accounts SET name=? WHERE name=?", (v, k))
+                    db.execute("UPDATE account_overrides SET name=? WHERE name=?", (v, k))
+                    db.execute("UPDATE postings SET account_ref=? WHERE account_ref=?", (f"expense:{v}", f"expense:{k}"))
+                    db.execute("UPDATE postings SET account_ref=? WHERE account_ref=?", (f"income:{v}", f"income:{k}"))
+                for table in ("drafts", "events"):
+                    for row_id, raw in db.execute(f"SELECT id, content FROM {table}").fetchall():
+                        data = json.loads(raw)
+                        changed = False
+                        for field in ("merchant", "category"):
+                            if data.get(field) in mapping:
+                                data[field] = mapping[data[field]]
+                                changed = True
+                        if changed:
+                            db.execute(f"UPDATE {table} SET content=? WHERE id=?", (canonical(data), row_id))
+            finally:
+                db.execute("CREATE TRIGGER IF NOT EXISTS immutable_event BEFORE UPDATE ON events BEGIN SELECT RAISE(ABORT, 'events are immutable'); END")
+                db.execute("CREATE TRIGGER IF NOT EXISTS immutable_posting BEFORE UPDATE ON postings BEGIN SELECT RAISE(ABORT, 'postings are immutable'); END")
 
     def command_get_in_transaction(self,db,resource,session):
         row=db.execute("SELECT * FROM command_plans WHERE id=? AND session_ref=?",(resource,session)).fetchone()

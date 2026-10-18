@@ -1,5 +1,9 @@
 import { test, expect } from "@playwright/test";
-import { scopeAndNavigation, duplicateConfirmation } from "./review-flow.mjs";
+import {
+  scopeAndNavigation,
+  duplicateConfirmation,
+  correctionScrollLifecycle,
+} from "./review-flow.mjs";
 const code = "synthetic-browser-access-code",
   origin = "http://127.0.0.1:3097";
 async function call(request, method, path, data) {
@@ -76,6 +80,11 @@ test("review: Live scoped education, evidence, refresh/back navigation and edito
   page,
 }) => {
   await scopeAndNavigation(page);
+});
+test("review: Live correction dialog handoff restores page scrolling after cancel, confirm and Escape", async ({
+  page,
+}) => {
+  await correctionScrollLifecycle(page);
 });
 test("review: Live duplicate gate survives final confirmation and records the reason", async ({
   page,

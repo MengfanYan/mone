@@ -2641,11 +2641,8 @@ dialog.modal::backdrop {
 }
 .floating-agent .command-composer {
   margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  padding: 18px;
+  border-radius: 14px;
   min-width: 0;
 }
 .floating-agent .command-composer > header {
@@ -3029,10 +3026,9 @@ dialog.modal::backdrop {
     padding-inline: 2px;
   }
   .app-shell .mobile-navigation {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(
-        0,
-        1fr
-      ) minmax(0, 1fr) minmax(0, 0.8fr);
+    grid-template-columns:
+      minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr)
+      minmax(0, 1fr) minmax(0, 0.8fr);
   }
   .ledger-task-bar .button-row > button {
     flex: 1 1 auto;

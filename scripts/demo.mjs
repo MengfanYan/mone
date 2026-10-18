@@ -42,7 +42,7 @@ if (mode !== "build") {
     process.exit(1);
   }
   console.log(
-    `\nZhiZhang · Offline product demo\nURL: http://localhost:${port}\nNo API, Python service, access code or external credentials required.\nAll scenarios use preset synthetic data. Ctrl+C stops this demo server.\n`,
+    `\nMone · Offline product demo\nURL: http://localhost:${port}\nNo API, Python service, access code or external credentials required.\nAll scenarios use preset synthetic data. Ctrl+C stops this demo server.\n`,
   );
 }
 const args = ["node_modules/next/dist/bin/next", mode];

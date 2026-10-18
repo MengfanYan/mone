@@ -164,9 +164,6 @@ export default function CloudAuth({ api, onSignedIn, pending = false }) {
             </button>
           ))}
       </div>
-      <a className="secondary wide demo-login-reset" href="/demo">
-        {text("Explore the synthetic Demo", "查看合成数据演示")}
-      </a>
     </div>
   );
 }

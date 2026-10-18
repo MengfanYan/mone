@@ -183,17 +183,26 @@ body,
 }
 .app-shell .heading-controls {
   display: grid;
-  grid-template-columns: 160px 90px minmax(0, auto);
+  grid-template-columns: 168px 98px minmax(0, auto);
   align-items: start;
   gap: 10px;
   flex: 0 1 auto;
   max-width: 100%;
 }
 .app-shell .heading-controls .workspace-month-field {
+  position: relative;
   display: grid;
   grid-template-rows: 44px auto;
   gap: 6px;
   margin: 0;
+  text-align: center;
+}
+.app-shell .heading-controls .workspace-month-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px;
 }
 .app-shell .heading-controls :is(.workspace-month, select, .primary) {
   height: 44px;
@@ -203,12 +212,116 @@ body,
   box-sizing: border-box;
 }
 .app-shell .heading-controls .workspace-month {
-  padding: 10px 12px;
+  width: 100%;
+  padding: 8px 30px 8px 12px;
+  text-align: center;
+  cursor: pointer;
+  font-family: var(--font-tabular);
+  font-variant-numeric: tabular-nums;
+}
+.app-shell .heading-controls .workspace-month-trigger {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.app-shell .heading-controls .workspace-month-trigger:hover {
+  color: #e2e8f0;
+  background: #ffffff12;
+}
+.app-shell .heading-controls .month-picker-popover {
+  position: absolute;
+  top: calc(44px + 6px);
+  left: 0;
+  z-index: 60;
+  width: 228px;
+  padding: 12px;
+  background: #151821;
+  border: 1px solid #3d4455;
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 #ffffff14,
+    0 18px 42px -10px #000c;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.app-shell .heading-controls .month-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2b303c;
+}
+.app-shell .heading-controls .month-picker-year {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f1f5f9;
+  font-family: var(--font-tabular);
+}
+.app-shell .heading-controls .month-picker-nav {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #343a48;
+  border-radius: 7px;
+  background: #0d0f14;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+.app-shell .heading-controls .month-picker-nav:hover:not(:disabled) {
+  border-color: #818cf8;
+  color: #fff;
+  background: #1e2231;
+}
+.app-shell .heading-controls .month-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+.app-shell .heading-controls .month-picker-cell {
+  height: 32px;
+  min-height: 32px;
+  padding: 0 6px;
+  border: 1px solid #2c313f;
+  border-radius: 7px;
+  background: #0c0e13;
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.app-shell .heading-controls .month-picker-cell:hover {
+  border-color: #6366f180;
+  background: #1d2133;
+  color: #fff;
+}
+.app-shell .heading-controls .month-picker-cell.is-selected {
+  background: linear-gradient(110deg, #4f46e5, #5d57ec);
+  border-color: #a5b4fc99;
+  color: #fff;
+  font-weight: 600;
 }
 .app-shell .heading-controls select {
   width: 100%;
   min-width: 0;
   max-width: none;
+  text-align: center;
+  text-align-last: center;
+  padding: 0 28px 0 12px !important;
+  background-position: right 10px center;
 }
 .app-shell .heading-controls .primary {
   display: inline-flex;
@@ -221,6 +334,7 @@ body,
 .app-shell .heading-controls .workspace-month-field small {
   margin: 0;
   line-height: 1.4;
+  text-align: center;
 }
 /* Complete rows without changing reading or keyboard order. */
 .app-shell
@@ -488,6 +602,15 @@ body,
   border-color: #424959;
   border-radius: 8px;
   min-width: 0;
+}
+.terminal-provider select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b3bdcd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 40px !important;
 }
 .terminal-provider :is(input, textarea)::placeholder {
   color: #a3afc2;
@@ -1282,16 +1405,41 @@ body,
   width: min(760px, 100%);
   max-height: min(900px, calc(100dvh - 170px));
   border-color: #3c414d;
+  border-radius: 20px;
   background: #101216;
 }
 .floating-agent-header {
+  padding: 18px 22px;
   background: #191c22;
   border-color: #30353f;
 }
+.floating-agent-avatar {
+  border-radius: 12px;
+}
+.floating-agent-body {
+  padding: 20px 22px 22px;
+}
 .floating-agent-intro {
-  font-size: 12px;
-  line-height: 1.55;
-  max-width: 70ch;
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  max-width: none;
+  width: 100%;
+}
+.app-shell .floating-agent .command-composer {
+  padding: 18px;
+  border-radius: 14px;
+  background: #151821;
+  border: 1px solid #2e3442;
+  box-shadow: inset 0 1px 0 #ffffff0d;
+}
+.app-shell .floating-agent .command-composer > form {
+  display: flex;
+  flex-direction: column;
+  min-height: 426px;
+}
+.floating-agent :is(p, small) {
+  max-width: none;
 }
 .floating-agent .command-composer > header {
   display: none;
@@ -1301,14 +1449,17 @@ body,
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
-  background: #080a0d;
-  border: 1px solid #2c3038;
+  margin-bottom: 14px;
+  background: #0a0c10;
+  border: 1px solid #2c303a;
   border-radius: 10px;
 }
 .floating-agent .composer-mode-row button {
   min-width: 0;
-  white-space: normal;
-  padding: 10px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 9px 8px;
   border: 0;
   border-radius: 7px;
   font-size: 12px;
@@ -1320,6 +1471,12 @@ body,
   scrollbar-color: #ffffff26 transparent;
   min-height: 0;
   line-height: 1.6;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+.app-shell .floating-agent .command-composer > form > textarea {
+  flex: 1 1 auto;
+  min-height: 112px;
 }
 .command-composer textarea::-webkit-scrollbar {
   width: 5px;
@@ -1334,7 +1491,7 @@ body,
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin: 16px 0 8px;
+  margin: 4px 0 8px;
 }
 .sample-pill {
   display: inline-flex;
@@ -1343,7 +1500,7 @@ body,
   padding: 7px 12px;
   background: #26243c;
   border: 1px solid #4d466b;
-  border-radius: 20px;
+  border-radius: 10px;
   color: #d4ceff;
   font-size: 11px;
 }
@@ -1352,11 +1509,11 @@ body,
 }
 .command-composer .composer-context {
   display: block;
-  margin: 16px 0 12px;
+  margin: 14px 0 0;
 }
 .command-composer .composer-context label {
   display: grid;
-  gap: 6px;
+  gap: 7px;
   width: 100%;
   min-width: 0;
 }
@@ -1364,23 +1521,42 @@ body,
   width: 100%;
   height: 44px;
   min-width: 0;
+  padding: 0 40px 0 14px;
+  border-radius: 10px;
 }
 .command-composer .composer-submit {
   width: 100%;
   justify-content: center;
   min-height: 44px;
+  margin-top: 14px;
+  border-radius: 10px;
+}
+.floating-agent .composer-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #282d39;
 }
 .local-dictation {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 .local-dictation small {
   color: #adb5c4;
   font-size: 11px;
-  max-width: 50ch;
+  max-width: none;
+}
+.evidence-type-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: 0 0 12px;
 }
 .evidence-type-pills button,
 .lab-tabs button,
@@ -1388,14 +1564,14 @@ body,
   border: 1px solid #343946;
   background: #171b22;
   color: #c5cbd7;
-  border-radius: 20px;
-  padding: 8px 12px;
+  border-radius: 10px;
+  padding: 9px 12px;
   font-size: 12px;
   line-height: 1.4;
   display: inline-flex;
   gap: 6px;
   align-items: center;
-  white-space: normal;
+  white-space: nowrap;
 }
 .evidence-type-pills button[aria-pressed="true"],
 .lab-tabs button[aria-pressed="true"] {
@@ -1404,23 +1580,25 @@ body,
   color: #eeeaff;
 }
 .evidence-type-pills > button {
-  flex: 1 1 140px;
+  flex: 1 1 auto;
   justify-content: center;
+  min-width: 0;
 }
 .evidence-dropzone {
   position: relative;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   text-align: center;
-  min-height: 170px;
-  padding: 24px 16px;
+  min-height: 132px;
+  padding: 18px 16px;
   background: radial-gradient(ellipse at top, #26243c66, transparent);
   border: 1px dashed #6b687f;
-  border-radius: 12px;
-  margin: 12px 0;
+  border-radius: 10px;
+  margin: 0 0 10px;
   cursor: pointer;
 }
 .evidence-dropzone > svg {
@@ -1443,7 +1621,7 @@ body,
   outline-offset: 3px;
 }
 .raw-evidence-entry {
-  margin: 16px 0;
+  margin: 4px 0 0;
 }
 .raw-evidence-entry summary {
   font-size: 12px;
@@ -1718,9 +1896,28 @@ body,
   .floating-agent-panel {
     width: auto;
     max-height: calc(100dvh - 150px);
+    border-radius: 16px;
   }
   .floating-agent-body {
-    padding: 12px;
+    padding: 14px;
+  }
+  .app-shell .floating-agent .command-composer {
+    padding: 14px;
+    border-radius: 12px;
+  }
+  .app-shell .floating-agent .command-composer > form {
+    min-height: 0;
+  }
+  .floating-agent .composer-mode-row button {
+    white-space: normal;
+  }
+  .evidence-type-pills {
+    flex-wrap: wrap;
+  }
+  .evidence-type-pills button,
+  .lab-tabs button,
+  .advisory-prompts button {
+    white-space: normal;
   }
   .advisory-action-form,
   .projection-grid {

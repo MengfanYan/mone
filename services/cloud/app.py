@@ -78,7 +78,7 @@ def create_app(config=None, *, pool=None, identity=None, deletion_journal=None):
         yield
         if owned: pool.close()
         if hasattr(deletion_journal,"close"): deletion_journal.close()
-    app=FastAPI(title="ZhiZhang cloud API",docs_url=None,redoc_url=None,openapi_url=None,lifespan=lifespan)
+    app=FastAPI(title="Mone cloud API",docs_url=None,redoc_url=None,openapi_url=None,lifespan=lifespan)
 
     @app.middleware("http")
     async def headers(request, call_next):

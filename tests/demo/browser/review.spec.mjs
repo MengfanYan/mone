@@ -3,6 +3,7 @@ import { navigate, openAdvancedModel } from "../../e2e/ui-helpers.mjs";
 import {
   scopeAndNavigation,
   duplicateConfirmation,
+  correctionScrollLifecycle,
 } from "../../e2e/review-flow.mjs";
 
 test.beforeEach(async ({ page }) => {
@@ -33,6 +34,11 @@ test("review: duplicate preview requires a separate-transaction decision and rea
   expect(after.at(-1).evidence.duplicate_override.reason).toContain(
     "distinct purchase",
   );
+});
+test("review: correction dialog handoff restores page scrolling after cancel, confirm and Escape", async ({
+  page,
+}) => {
+  await correctionScrollLifecycle(page);
 });
 test("review: unchanged weights, compact single-point history, weekday/holiday/crypto risk and ordinary settings", async ({
   page,

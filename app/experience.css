@@ -1,4 +1,9 @@
 /* UX 1.0: one task entry, visible facts, editable results, and bounded history. */
+/* Derive the lock from actual open dialogs. Editors can hand off to a second
+   modal and unmount in either order; per-instance overflow snapshots go stale. */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
 :root {
   --canvas: #f1f3ee;
   --background: #f1f3ee;

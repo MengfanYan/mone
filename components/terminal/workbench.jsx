@@ -81,7 +81,7 @@ export function TerminalHeader({
       <header className="topbar">
         <a
           className="terminal-brand"
-          aria-label={text("ZhiZhang home", "知账首页")}
+          aria-label={text("Mone home", "Mone 首页")}
           href={demo ? "/demo" : "/"}
         >
           <span className="terminal-mark" aria-hidden="true">
@@ -91,8 +91,10 @@ export function TerminalHeader({
             <i />
           </span>
           <span>
-            {text("ZhiZhang", "知账")}{" "}
-            <span>{text("Finance workspace", "财务工作台")}</span>
+            {text("Mone", "Mone")}{" "}
+            <span>
+              {text("Every dollar, accounted for", "每一分钱，皆有迹可循")}
+            </span>
           </span>
         </a>
         <button

@@ -24,8 +24,6 @@ function useModal() {
       dialog.querySelector("input:not([type=checkbox]),select,textarea") ||
       dialog.querySelector("button")
     )?.focus();
-    const before = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     const cycleFocus = (event) => {
       if (event.key !== "Tab") return;
       const controls = [
@@ -47,7 +45,6 @@ function useModal() {
     return () => {
       dialog.removeEventListener("keydown", cycleFocus);
       dialog.close();
-      document.body.style.overflow = before;
       if (previous?.isConnected) previous.focus();
     };
   }, []);

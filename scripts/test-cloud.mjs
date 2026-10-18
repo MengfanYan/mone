@@ -139,7 +139,7 @@ try {
       );
       if (
         !page.ok ||
-        !(await page.text()).includes("ZhiZhang") ||
+        !(await page.text()).includes("Mone") ||
         blocked.status !== 401
       )
         throw new Error("Cloud startup or unauthenticated boundary failed");

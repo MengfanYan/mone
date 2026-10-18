@@ -22,7 +22,9 @@ export function LocaleProvider({ initialLocale = "en", children }) {
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
     document.title =
-      locale === "zh" ? "知账 · 私人财务工作台" : "ZhiZhang · Personal Finance";
+      locale === "zh"
+        ? "Mone · 每一笔清晰可溯，每一步从容规划"
+        : "Mone · Every Dollar, Accounted For";
   }, [locale]);
   const t = useCallback(
     (key, variables) => translate(key, locale, variables),

@@ -70,7 +70,7 @@
   "将下载包含私人明细的JSON文件。": "A JSON file containing your private financial details will be downloaded.",
   "下载文件和用户自行制作的备份需自行管理。": "Downloaded files and independently created backups remain your responsibility.",
   "追加反向分录，保留历史；更正时可再创建新草稿。": "Append reversing entries while preserving history. Create a new draft to record a correction.",
-  "知账": "ZhiZhang",
+  "知账": "Mone",
   "每一笔，有据可查。": "Know where your money goes.",
   "每一步，心中有数。": "Plan what comes next.",
   "从一份账单开始，理解收支、规划目标。": "Your accounts, spending and goals, in one clear workspace.",
@@ -362,7 +362,7 @@
   "数据保存在项目的 .local-data/wallet.sqlite3。登录会话12小时有效，服务重启后失效。": "Data is stored in .local-data/wallet.sqlite3. Sessions expire after 12 hours and are invalidated by a restart.",
   "仅监听本机；不适合托管、多用户或真实金融建议生产服务。": "Listens only on this device. This is not a hosted, multi-user or regulated financial advice service.",
   "应用不托管资金、不支付、不交易。接受规划仅表示保存计划。": "The app does not hold funds, pay or trade. Accepting a plan only saves the plan.",
-  "知账 · 清楚记账，谨慎规划。": "ZhiZhang · Clear records. Considered decisions.",
+  "知账 · 清楚记账，谨慎规划。": "Mone · Every dollar traced. Every step planned.",
   "账本 v": "Ledger v",
   "· 本地单用户": " · Local, single operator",
   "关闭账户表单": "Close account form",
@@ -1087,5 +1087,12 @@
   "请重新申请密码恢复邮件。": "Request a new password recovery email",
   "密码已更新。请重新登录工作空间。": "Password updated. Sign in again to open your workspace.",
   "指定记录": "Selected record",
-  "返回通知": "Return to notifications"
+  "返回通知": "Return to notifications",
+  "Mone · 每一笔清晰可溯，每一步从容规划。": "Mone · Every dollar traced. Every step planned.",
+  "演示·银行": "Demo · Bank",
+  "演示·贷款": "Demo · Loan",
+  "合成工资": "Synthetic salary",
+  "合成生活支出": "Synthetic living costs",
+  "合成债务利息": "Synthetic loan interest",
+  "合成本金还款": "Synthetic principal repayment"
 }

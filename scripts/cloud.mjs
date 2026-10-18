@@ -169,7 +169,7 @@ if (["migrate", "preflight", "restore"].includes(mode)) {
     process.exitCode = 1;
   } else {
     console.log(
-      `ZhiZhang cloud preview: http://localhost:${port}\nBilling, bank sync, trading and external AI remain disabled.`,
+      `Mone cloud preview: http://localhost:${port}\nBilling, bank sync, trading and external AI remain disabled.`,
     );
     web = run(
       process.execPath,

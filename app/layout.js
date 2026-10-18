@@ -6,10 +6,11 @@ import { LocaleProvider } from "@/components/locale-provider";
 import { TerminalProvider } from "@/components/terminal/context";
 import "./terminal.css";
 import "./design-system.css";
+import "./auth.css";
 export const metadata = {
-  title: "ZhiZhang · Personal Finance",
+  title: "Mone · Personal Finance",
   description:
-    "A private financial workspace with verifiable records and clear planning.",
+    "Every dollar traced. Every step planned. A private financial workspace with verifiable records.",
 };
 export default async function RootLayout({ children }) {
   const preferences = await cookies();

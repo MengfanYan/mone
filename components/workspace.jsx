@@ -8,6 +8,7 @@ import DuplicateReview from "./duplicate-review";
 import { duplicateReviewComplete } from "@/lib/duplicates.mjs";
 import AnalysisQuery from "./analysis-query";
 import CloudAuth from "./cloud-auth";
+import LoginGateway from "./login-gateway";
 import CloudAccount from "./cloud-account";
 import NotificationCenter from "./notification-center";
 import EvidenceQuality from "./evidence-quality";
@@ -1451,147 +1452,86 @@ export default function Workspace({
   }
   if (session !== "authenticated" || !state)
     return (
-      <main className="login-page">
-        <div className="login-decoration">
-          <div className="brand">
-            <div className="brand-mark">
-              <Wallet size={24} />
-            </div>
-            <div>
-              {t("知账")}
-              <span>{t("个人财务")}</span>
-            </div>
-          </div>
-          <div>
-            <div className="eyebrow">YOUR MONEY, CLEARLY.</div>
-            <h1>
-              {t("每一笔，有据可查。")}
-              <br />
-              {t("每一步，心中有数。")}
-            </h1>
-            <p>
-              {t("从一份账单开始，理解收支、规划目标。")}
-              <br />
-              {t("在自己的设备上，把财务看清楚。")}
-            </p>
-            <div className="login-pills">
-              <span>
-                <LockKeyhole size={15} />
-                {t("本地处理")}
-              </span>
-              <span>
-                <Check size={15} />
-                {t("金额可复算")}
-              </span>
-              <span>
-                <ShieldCheck size={15} />
-                {t("由你确认")}
-              </span>
-            </div>
-          </div>
-          <small>{t("只读财务分析 · 无支付或证券交易")}</small>
-        </div>
-        <section className="login-card">
-          <div className="login-card-top">
-            <span className="eyebrow">
-              {t(cloud ? "云端账号" : "本地访问")}
-            </span>
-            <LanguageSwitch />
-          </div>
-          <div className="eyebrow">{t("私人财务工作台")}</div>
-          <h2>{t(demo ? "打开产品演示" : "打开你的工作台")}</h2>
-          {cloud ? (
-            <CloudAuth
-              api={api}
-              pending={session === "loading"}
-              onSignedIn={() => load()}
-            />
-          ) : (
-            <>
-              <p>
-                {demo ? (
-                  t("无需访问码。所有模块使用预设数据，可以随时重置演示。")
-                ) : (
-                  <>
-                    {t("运行")}
-                    <code>npm run dev</code>
-                    {t("，输入终端显示的本地访问码。无需云端账号或API密钥。")}
-                  </>
-                )}
-              </p>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  work(async () => {
-                    await api("session", "POST", {
-                      access_code: code,
-                    });
-                    setCode("");
-                    await load();
+      <LoginGateway cloud={cloud} demo={demo}>
+        {cloud ? (
+          <CloudAuth
+            api={api}
+            pending={session === "loading"}
+            onSignedIn={() => load()}
+          />
+        ) : (
+          <>
+            {demo && (
+              <p>{t("无需访问码。所有模块使用预设数据，可以随时重置演示。")}</p>
+            )}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                work(async () => {
+                  await api("session", "POST", {
+                    access_code: code,
                   });
-                }}
-              >
-                {!demo && (
-                  <Field
-                    label={t("本地访问码")}
-                    type="password"
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    autoComplete="current-password"
-                    disabled={session === "loading" || busy}
-                    required
-                    autoFocus
-                  />
-                )}
-                <button
-                  className="primary wide"
-                  disabled={busy || session === "loading"}
-                >
-                  {busy
-                    ? t("正在打开…")
-                    : session === "loading"
-                      ? t(demo ? "加载演示场景…" : "连接本地服务…")
-                      : t(demo ? "进入演示" : "进入工作台")}
-                  <ChevronRight size={18} />
-                </button>
-              </form>
-              {demo ? (
-                <button
-                  className="secondary wide demo-login-reset"
-                  disabled={busy}
-                  onClick={() => work(resetDemo)}
-                >
-                  {t("重置演示")}
-                </button>
-              ) : (
-                <a className="secondary wide demo-login-reset" href="/demo">
-                  {t("查看产品演示")}
-                </a>
-              )}
-            </>
-          )}
-          {message && !masked && (
-            <div
-              className={`notice ${message.error ? "error" : ""}`}
-              role={message.error ? "alert" : "status"}
+                  setCode("");
+                  await load();
+                });
+              }}
             >
-              {t(message.text)}
-            </div>
-          )}
-          <div className="login-note">
-            <ShieldCheck size={18} />
-            <span>
-              {t(
-                demo
-                  ? "演示修改仅保存在本浏览器，与正式账本分开。"
-                  : cloud
-                    ? "每位用户拥有独立的私人工作空间。请使用独立密码并启用多重验证。"
-                    : "数据存储在本机。本地模式仅支持一位使用者；请开启设备磁盘加密。",
+              {!demo && (
+                <Field
+                  label={t("本地访问码")}
+                  type="password"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  autoComplete="current-password"
+                  disabled={session === "loading" || busy}
+                  required
+                  autoFocus
+                />
               )}
-            </span>
+              <button
+                className="primary wide"
+                disabled={busy || session === "loading"}
+              >
+                {busy
+                  ? t("正在打开…")
+                  : session === "loading"
+                    ? t(demo ? "加载演示场景…" : "连接本地服务…")
+                    : t(demo ? "进入演示" : "进入工作台")}
+                <ChevronRight size={18} />
+              </button>
+            </form>
+            {demo ? (
+              <button
+                className="secondary wide demo-login-reset"
+                disabled={busy}
+                onClick={() => work(resetDemo)}
+              >
+                {t("重置演示")}
+              </button>
+            ) : null}
+          </>
+        )}
+        {message && !masked && (
+          <div
+            className={`notice ${message.error ? "error" : ""}`}
+            role={message.error ? "alert" : "status"}
+          >
+            {t(message.text)}
           </div>
-        </section>
-      </main>
+        )}
+        <div className="login-note">
+          <ShieldCheck size={18} />
+          <span>
+            {t(
+              demo
+                ? "演示修改仅保存在本浏览器，与正式账本分开。"
+                : cloud
+                  ? "每位用户拥有独立的私人工作空间。请使用独立密码并启用多重验证。"
+                  : "数据存储在本机。本地模式仅支持一位使用者；请开启设备磁盘加密。",
+            )}
+          </span>
+        </div>
+      </LoginGateway>
     );
   return (
     <div

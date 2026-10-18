@@ -87,7 +87,7 @@ const env = {
   PYTHONUNBUFFERED: "1",
 };
 console.log(
-  `\n知账 · Local workspace\nURL: http://localhost:${port}\nLocal access code: ${code}\nKeep this terminal open. Ctrl+C stops both services.\n`,
+  `\nMone · Local workspace\nURL: http://localhost:${port}\nLocal access code: ${code}\nKeep this terminal open. Ctrl+C stops both services.\n`,
 );
 const children = [];
 let stopping = false;

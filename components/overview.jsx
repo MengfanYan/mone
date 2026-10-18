@@ -525,18 +525,26 @@ export default function Overview({
                   <td>
                     <div className="merchant-cell">
                       <span className={`merchant-avatar avatar-${i % 4}`}>
-                        {event.merchant.slice(0, 2)}
+                        {(() => {
+                          const label = t(event.merchant);
+                          const words = label.trim().split(/\s+/);
+                          return words.length > 1
+                            ? words
+                                .slice(-2)
+                                .map((w) => w[0])
+                                .join("")
+                                .toUpperCase()
+                            : label.slice(0, 2).toUpperCase();
+                        })()}
                       </span>
                       <div>
-                        <strong>{event.merchant}</strong>
-                        <small>
-                          {state.demo ? t(event.category) : event.category}
-                        </small>
+                        <strong>{t(event.merchant)}</strong>
+                        <small>{t(event.category)}</small>
                       </div>
                     </div>
                   </td>
                   <td>{event.date}</td>
-                  <td>{accountMap[event.account_id]?.name}</td>
+                  <td>{t(accountMap[event.account_id]?.name || "")}</td>
                   <td>{kinds[event.kind]}</td>
                   <td>
                     <Money value={event.amount} currency={event.currency} />
@@ -589,7 +597,7 @@ export default function Overview({
                 <Landmark size={18} />
               </div>
               <div>
-                <strong>{account.name}</strong>
+                <strong>{t(account.name)}</strong>
                 <p>
                   {account.type === "liability"
                     ? t("负债 · 欠款")
